@@ -1,6 +1,7 @@
 # Project-2
 Readme file for project #2!
-PROJECT TWO							APRIL 10, 2021
+
+PROJECT TWO							
 Goals for project:
 Main Theme: What will a beer cost you at every major league stadium.   
 1.	Comparing the difference of the cost of beer between the major league stadiums.

@@ -9,12 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" />
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700,900' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-    <script>var ml = { timelines: {}};</script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="mapstyle.css">
 </head>
 
 <!-- setting up the Content, Padding, Border and the Margin  -->
@@ -72,9 +70,9 @@
     <!-- Large Data Box and form -->
     <div style="position:relative; left:290px; top:-285px">
     <div style="background-color:rgb(80, 90, 90);"class="jumbotron container p-5 mt-3">
-        <h2 class="display-7" style="color:rgb(39, 45, 66)">Explore the Cost of Beer at the top MLB Statiums!</h2>
+        <h2 class="display-4" style="color:rgb(39, 45, 66)">Explore the Cost of Beer at the top MLB Statiums!</h2>
         <hr class="my-4">
-        <p style="color:rgb(252, 251, 250)" class="lead">Choose your stadium to see where you can get the best price of beer!</p>
+        <p style="color:rgb(252, 251, 250)" class="lead">Choose your stadium to see where you can get the best price of beer on the map below!</p>
         <div class="row border rounded border-dark px-lg-5 py-3 m-2">
             <div class="col-lg-2 text-md-right">
                 <p style="color:rgb(29, 38, 70)" class="mt-2">Stadium:</p>
@@ -150,47 +148,28 @@
                     <option>$10.00</option>
                 </select>
             </div>
-
         </div>
         
-            <div class="row mt-3">
-                <div class="col-lg-3">
-                    <!--<div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="remove-zeros">
-                        <label style="color:rgb(90, 117, 204)" class="form-check-label" for="removeZeros">Remove 0 Values</label>
-                    </div>-->
-                </div>
-                <div class="col-lg-7 text-lg-right pt-2">
-                    <p style="color:rgb(105, 174, 238);font-size:15px">Submit your choices of stadiums to see the results below!</p>
-                </div>
-                <div class="col-lg-2 text-lg-left">
-                    <button class="btn btn-primary" type="submit" id="submitBtn">Submit</button>
-                </div>
+        <div class="row mt-3">
+            <div class="col-lg-10 text-lg-right pt-2">
+                <p>Submit your choices to see the results below!</p>
+            </div>
+            <div class="col-lg-2 text-lg-left">
+                <button class="btn btn-primary" type="submit" id="submitBtn">Submit</button>
             </div>
         </div>
     </div>
     
-    <!-- Main Content Area -->
-    <div class="col-lg-10 text-center mb-5">
-
- <!-- Table -->
- <div style="position:relative; left:100px; top:-300px">
- <div style="background-color:rgb(135, 146, 146);"class="container-lg col-14 p-1 mt-4 mx-auto pt-4 border-top">
-    <h3 style="color:rgb(16, 9, 77)" id="table-title">Locations that give you more bang for your buck at the MLB</h3>
-    <div class="table-responsive">
-        <table id="data-table" data-toggle="table">
-            <thead>
-                <tr>
-                    <th data-field="name" data-sortable="true">MLB Team</th>
-                    <th data-field="x" data-sortable="true">Beer Cost</th>
-                    <th data-field="y" data-sortable="true">Wins or Losses</th>
-                </tr>
-            </thead>
-        </table>
+    <!-- Map -->
+    <div class="container border py-3 rounded">
+        <div id="map"></div>
     </div>
 </div>
 </div>
-</div>
+
+    
+    <!-- Main Content Area -->
+    <div class="col-lg-10 text-center mb-5">
 </div>
 <script>
     // Wrap every letter in a span (Moving Titles)

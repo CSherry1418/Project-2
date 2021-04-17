@@ -168,7 +168,7 @@
     <div class="col-lg-10 text-center mb-5">
 
  <!-- Table -->
- <div style="position:relative; left:100px; top:-300px">
+ <div style="position:absolute; left:100px; top:-300px">
  <div style="background-color:rgb(135, 146, 146);"class="container-lg col-14 p-1 mt-4 mx-auto pt-4 border-top">
     <h3 style="color:rgb(16, 9, 77)" id="table-title">Locations that give you more bang for your buck at the MLB</h3>
     <div class="table-responsive">
@@ -187,31 +187,25 @@
 </div>
 </div>
 <script>
-    // Wrap every letter in a span (Moving Titles)
-    $('.ml13').each(function(){
-        $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
-    });
+// Wrap every letter in a span (Moving Titles)
+$('.ml13').each(function(){
+    $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
         
-    ml.timelines["ml13"] = anime.timeline({loop: true})
-        .add({
-            targets: '.ml13 .letter',
-            translateY: [100,0],
-            translateZ: 0,
-            opacity: [0,1],
-            easing: "easeOutExpo",
-            duration: 1400,
-            delay: function(el, i) {
-                return 300 + 30 * i;
-        }
-        }).add({
-            targets: '.ml13 .letter',
-            translateY: [0,-100],
-            opacity: [1,0],
-            easing: "easeInExpo",
-            duration: 1200,
-            delay: function(el, i) {
-              return 100 + 30 * i;
-            }
+ml.timelines["ml13"] = anime.timeline({loop: true})
+    .add({
+        targets: '.ml13 .letter',
+        opacity: [0,1],
+        easing: "easeInOutQuad",
+        duration: 2250,
+        delay: function(el, i) {
+            return 150 * (i+1);
+    }
+    }).add({
+        targets: '.ml13 .letter',
+        opacity: 0,
+        easing: "easeOutExpo",
+        duration: 1000,
         });
 </script>
 
